@@ -1,0 +1,23 @@
+[
+  {
+    "brand": "Nissan",
+    "model": "GT-R",
+    "transportWeight": 2000.0,
+    "productionYear": 2024,
+    "price": 120000.0
+  },
+  {
+    "brand": "Tesla",
+    "model": "Model 3",
+    "transportWeight": 2000.0,
+    "productionYear": 2023,
+    "price": 70000.0
+  },
+  {
+    "brand": "Ford",
+    "model": "Mustang",
+    "transportWeight": 2000.0,
+    "productionYear": 2016,
+    "price": 25000.0
+  }
+]
