@@ -1,6 +1,7 @@
 package org.example;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -11,29 +12,21 @@ public class Main {
         builder.setPrice(25000.0);
         Transport transport = builder.build();
 
-        // Сериализация объекта и вывод в консоль
-        String xmlData = xmlSerializer.serialize(transport);
-        System.out.println("Serialized XML data:\n" + xmlData);
 
-        // Десериализация XML данных
-        Transport deserializedTransport = xmlSerializer.deserialize(xmlData);
-        System.out.println("Deserialized Transport:\n" + deserializedTransport.toString());
+         try {
+             xmlSerializer.writeToFile(List.of(transport), "transport.xml");
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
 
-        // Запись в файл и чтение из файла (раскомментируйте код ниже)
-        // try {
-        //     xmlSerializer.writeToFile(List.of(transport), "transport.xml");
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
-
-        // try {
-        //     List<Transport> deserializedTransports = xmlSerializer.readFromFile("transport.xml");
-        //     for (Transport t : deserializedTransports) {
-        //         System.out.println("Deserialized Transport:\n" + t.toString());
-        //     }
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
+         try {
+             List<Transport> deserializedTransports = xmlSerializer.readFromFile("transport.xml");
+             for (Transport t : deserializedTransports) {
+                 System.out.println("Deserialized Transport:\n" + t.toString());
+             }
+         } catch (IOException e) {
+             e.printStackTrace();
+         }
     }
 }
 

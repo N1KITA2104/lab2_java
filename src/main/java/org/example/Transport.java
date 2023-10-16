@@ -1,34 +1,55 @@
 package org.example;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.util.Objects;
 
 public class Transport {
-    private final String brand;
+    private String brand;
 
-    private final String model;
+    private String model;
 
-    private final double transportWeight;
+    private double weight;
 
-    private final int productionYear;
+    private int productionYear;
 
-    private final double price;
+    private double price;
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setTransportWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setProductionYear(int productionYear) {
+        this.productionYear = productionYear;
+    }
 
     /**
      * Constructs a new Transport object using the provided builder.
      *
      * @param builder The builder used to construct the Transport object.
      */
-    @JsonCreator
+//    @JsonCreator
     public Transport(Builder builder) {
         this.brand = builder.brand;
         this.model = builder.model;
-        this.transportWeight = builder.transportWeight;
+        this.weight = builder.weight;
         this.productionYear = builder.productionYear;
         this.price = builder.price;
     }
 
+    public Transport () {
+
+    }
     /**
      * Get the brand of the transportation vehicle.
      *
@@ -56,7 +77,7 @@ public class Transport {
      */
 
     public double getWeight() {
-        return transportWeight;
+        return weight;
     }
 
     /**
@@ -89,7 +110,7 @@ public class Transport {
         return "Transport{" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", transportWeight='" + transportWeight + '\'' +
+                ", weight='" + weight + '\'' +
                 ", productionYear=" + productionYear +
                 ", price=" + price +
                 '}';
@@ -110,7 +131,7 @@ public class Transport {
                 Double.compare(transport.price, price) == 0 &&
                 brand.equals(transport.brand) &&
                 model.equals(transport.model) &&
-                Double.compare(transport.transportWeight, transportWeight) == 0;
+                Double.compare(transport.weight, weight) == 0;
     }
 
     /**
@@ -120,7 +141,7 @@ public class Transport {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, productionYear, price, transportWeight);
+        return Objects.hash(brand, model, productionYear, price, weight);
     }
 
     /**
@@ -129,7 +150,7 @@ public class Transport {
     public static class Builder {
         private final String brand;
         private final String model;
-        private final double transportWeight;
+        private final double weight;
         private int productionYear;
         private double price;
 
@@ -138,15 +159,15 @@ public class Transport {
          *
          * @param brand        The brand of the transportation vehicle.
          * @param model        The model of the transportation vehicle.
-         * @param transportWeight The type of the transportation vehicle.
+         * @param weight The type of the transportation vehicle.
          */
-        public Builder(String brand, String model, double transportWeight) {
-            if (brand == null || model == null || transportWeight <= 0) {
+        public Builder(String brand, String model, double weight) {
+            if (brand == null || model == null || weight <= 0) {
                 throw new IllegalArgumentException("Brand, model, and transportType must not be null.");
             }
             this.brand = brand;
             this.model = model;
-            this.transportWeight = transportWeight;
+            this.weight = weight;
         }
 
         /**
